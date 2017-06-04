@@ -4,11 +4,13 @@
 const reSplit = /\s*,\s*/g;
 const reSeparate = /^(L|R)(\d+)$/;
 
+const compose = (f, g) => x => f(g(x));
+const separate = command => command.match(reSeparate).slice(1);
+const pairToObj = pair => ({ turn: pair[0], walk: parseInt(pair[1], 10) });
+
 const parse = input => input
 	.trim()
 	.split(reSplit)
-	.map(tw => tw.match(reSeparate).slice(1))
-	.map(tw => ({ turn: tw[0], walk: parseInt(tw[1], 10) }));
-
+	.map(compose(pairToObj, separate));
 
 module.exports = parse;
