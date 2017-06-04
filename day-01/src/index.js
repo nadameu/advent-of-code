@@ -12,4 +12,4 @@ const walked = path(parse(input));
 
 console.log('Part 1', distance(walked[walked.length - 1]));
 
-console.log('Part 2', distance(dupe(walked, (a, b) => a.x === b.x && a.y === b.y)[0]));
+console.log('Part 2', distance(dupe(walked, w => [w.x, w.y].join(', '))[0]));
