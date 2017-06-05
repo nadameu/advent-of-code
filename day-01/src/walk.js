@@ -1,13 +1,9 @@
-//@flow
+const xoffsets = { 1: 1, 3: -1 };
+const yoffsets = { 0: 1, 2: -1 };
 
-const NINETY = Math.PI / 2;
-
-const walk = obj => {
-	const angle = NINETY * (1 - obj.dir);
-	return Object.assign({}, obj, {
-		x: obj.x + Math.round(Math.cos(angle)),
-		y: obj.y + Math.round(Math.sin(angle))
-	});
-};
+const walk = obj => Object.assign({}, obj, {
+	x: obj.x + (xoffsets[obj.dir] || 0),
+	y: obj.y + (yoffsets[obj.dir] || 0)
+});
 
 module.exports = walk;
